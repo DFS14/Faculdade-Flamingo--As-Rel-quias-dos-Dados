@@ -2,6 +2,8 @@
 
 Uma vez que o banco estiver bem estruturado e desenhado, é possível realizar testes, simulando relatórios ou telas que o sistema possa necessitar. A tarefa consiste em criar consultas que levem aos resultados esperados.
 
+
+
 -- Criando a VIEW sobre paciente
 
 
@@ -18,7 +20,7 @@ FROM paciente
 INNER JOIN consulta
 ON paciente.consulta_id = consulta.consulta_id;
 
-
+----------------------------------------------------------
     
 CREATE  OR REPLACE VIEW `dados_medico` AS
 
@@ -35,16 +37,29 @@ INNER JOIN medicos
 ON medicos.especialidade_id = especialidades.especialidade_id;
 
 
+-----------------------------------------------------------
 
 -- Selecionando dados da VIEW
 
 SELECT * From dados_pacientes;
+
 select p.nome_paciente, m.nome_medico, i.data_entrada, i.desc_procedimentos, q.id_quarto
-from internacao i
-inner join medico m 
-on m.id_medico = i.medico_id
-inner join paciente p
-on p.id_paciente = i.paciente_id
-inner join quarto q
-on q.id_quarto = i.quarto_id
-where q.tipo_id = 3 and m.especialidade_id = 3;
+
+From internacao i
+INNER JOIN medico m 
+ON m.id_medico = i.medico_id
+INNER JOIN paciente p
+ON p.id_paciente = i.paciente_id
+INNER JOIN quarto q
+ON q.id_quarto = i.quarto_id
+Where q.tipo_id = 3 and m.especialidade_id = 3;
+
+
+-------------------------------------------------------------
+
+SELECT * From  medico where nome_medico like '%henrique%';
+
+
+
+
+
